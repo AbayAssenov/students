@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+
+        <h:outputStylesheet library="css" name="styleS.css"/>
+
+    </h:head>
+    <h:body>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12" style="padding-bottom: 70px;">
+                <h:form>
+                    <p:menubar>
+                        <f:facet name="options">
+                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </div>
+
+            <div class="ui-g-12 ui-md-12">
+                <!-- ******************** HeaderWrap ********************-->
+                <div id="headerwrap">
+                    <h1><span>Таблица список студентов.</span><br/>Редактируй, добавляй, удаляй.</h1>
+
+                    <p:panel header="..." style="margin-left: 20%; margin-right: 20%;">
+                        <h:form id="form">
+                            <p:growl id="messages" showDetail="true"/>
+                            <p:dataTable
+                                    id="eventsDT"
+                                    var="student"
+                                    value="#{studentView.students}"
+                                    rows="3"
+                                    paginator="true"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="3,6,12"
+                                    selectionMode="single" selection="#{studentView.selectedStudent}"
+                                    rowKey="#{student.id}">
+
+                                <f:facet name="header">
+                                    Таблица
+                                </f:facet>
+
+                                <p:ajax event="rowSelect" listener="#{studentView.onRowSelect}"
+                                        update=":form:messages"/>
+                                <p:ajax event="rowUnselect" listener="#{studentView.onRowUnselect}"
+                                        update=":form:messages"/>
+
+                                <p:column headerText="ID">
+                                    <p:outputLabel value="#{student.id}"/>
+                                </p:column>
+                                <p:column headerText="ФИО">
+                                    <p:outputLabel value="#{student.fio}"/>
+                                </p:column>
+                                <p:column headerText="Факультет">
+                                    <p:outputLabel value="#{student.faculty}"/>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton value="Редактировать" onclick="PF('edit').show();PF('add').hide();"/>
+                                    <p:commandButton value="Добавить" onclick="PF('add').show();PF('edit').hide();"/>
+                                    <p:commandButton action="#{studentView.deleteStudent()}" value="Удалить"
+                                                     update="@form" ajax="true"/>
+                                </f:facet>
+                            </p:dataTable>
+                            <p:spacer height="30px;"/>
+                        </h:form>
+                        <p:dialog widgetVar="add" visible="false">
+                        <h:form id="form2">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    Добавление
+                                </f:facet>
+                                <p:outputLabel for="fio" value="ФИО:"/>
+                                <p:inputText id="fio" value="#{studentView.student.fio}" required="true"/>
+                                <p:outputLabel for="faculty" value="Факультет:"/>
+                                <p:inputText id="faculty" value="#{studentView.student.faculty}" required="true"/>
+                                <f:facet name="footer">
+                                    <p:commandButton value="Добавить" action="#{studentView.addStudent}"
+                                                     update=":form,:form2" ajax="true"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </h:form>
+                        </p:dialog>
+                        <p:dialog widgetVar="edit" visible="false">
+                        <h:form id="form3">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    Редактирование
+                                </f:facet>
+                                <p:outputLabel for="fio" value="ФИО:"/>
+                                <p:inputText id="fio" value="#{studentView.student.fio}" required="true"/>
+                                <p:outputLabel for="faculty" value="Факультет:"/>
+                                <p:inputText id="faculty" value="#{studentView.student.faculty}" required="true"/>
+                                <f:facet name="footer">
+                                    <p:commandButton value="Изменить" action="#{studentView.updateStudent}"
+                                                     update=":form,:@form" />
+                                </f:facet>
+                            </p:panelGrid>
+                        </h:form>
+                        </p:dialog>
+                    </p:panel>
+                    <p:spacer height="50px;"/>
+                </div>
+            </div>
+
+
+
+            <div class="ui-g-12 ui-md-12">
+
+                <div class="footer-wrapper">
+                    <div id="footer">
+                        <small>&nbsp;&copy; 2017 Created by Assenov Abay.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </h:body>
+</f:view>
+</html>

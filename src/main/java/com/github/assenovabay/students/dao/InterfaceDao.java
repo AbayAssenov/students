@@ -6,6 +6,8 @@ import java.util.List;
  * @author Abay Assenov
  *         10/16/2017
  */
+
+
 public interface InterfaceDao<T> {
 
     void create(T entity);

@@ -5,16 +5,13 @@ package com.github.assenovabay.students.bean;
  * 10/16/2017
  */
 
-import com.github.assenovabay.students.dao.impl.StudentDao;
-import com.github.assenovabay.students.database.DataSourceConnection;
-import com.github.assenovabay.students.entiry.Student;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import java.sql.SQLException;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class UserLoginView {
 
     private String username;
@@ -37,21 +34,41 @@ public class UserLoginView {
         this.password = password;
     }
 
-    public void login() throws SQLException {
+    public void login() throws IOException{
 
-        DataSourceConnection d = new DataSourceConnection();
 
-        StudentDao studentDao = new StudentDao(d.getConnection());
+        if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
 
-        for (Student s : studentDao.getAll()) {
-            System.out.println(s);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("student.xhtml");
+
+        } else {
+
+            System.out.println("ERROR "+username+password);
         }
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 //        RequestContext context = RequestContext.getCurrentInstance();
 //        FacesMessage message = null;
 //        boolean loggedIn = false;
 //
-//        if(username != null && username.equals("admin") && password != null && password.equals("admin")) {
+//        if (username != null &&
+//                username.equals("admin") &&
+//                password != null &&
+//                password.equals("admin")) {
 //            loggedIn = true;
 //            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
 //        } else {
@@ -61,5 +78,12 @@ public class UserLoginView {
 //
 //        FacesContext.getCurrentInstance().addMessage(null, message);
 //        context.addCallbackParam("loggedIn", loggedIn);
-    }
-}
+
+//        DataBase d = new DataBase();
+//
+//        StudentDao studentDao = new StudentDao(d.getConnection());
+//
+//        for (Student s : studentDao.getAll()) {
+//            System.out.println(s);
+//        }
+

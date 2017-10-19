@@ -14,8 +14,13 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+<context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>le-frog</param-value>
+</context-param>
+    
     <resource-ref>
-        <description>MySQL Datasource example</description>
+        <description>MySQL Datasource</description>
         <res-ref-name>jdbc/student</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>

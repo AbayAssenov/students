@@ -1,20 +1,26 @@
-package com.github.assenovabay.students.entiry;
+package com.github.assenovabay.students.model;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  * @author Abay Assenov
  *         10/16/2017
  */
+
+@ManagedBean
+@SessionScoped
 public class Student {
 
-    private int id;
+    private Long id;
     private String fio;
     private String faculty;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,6 +42,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "ID "+getId()+" FIO "+getFio()+" FACULTY "+getFaculty();
+        return "ID:"+getId()+" ФИО:"+getFio()+" Факультет:"+getFaculty();
     }
 }
