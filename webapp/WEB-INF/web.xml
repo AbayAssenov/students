@@ -14,6 +14,8 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+
+
 <context-param>
     <param-name>primefaces.THEME</param-name>
     <param-value>le-frog</param-value>
@@ -25,6 +27,19 @@
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
+
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>com.github.assenovabay.students.filter.UserFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/views/student.xhtml</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
 
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>

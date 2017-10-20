@@ -14,8 +14,6 @@ public interface InterfaceDao<T> {
 
     void update(T entity);
 
-    T getById(Long idEntity);
-
     List<T> getAll();
 
     void delete(T user);

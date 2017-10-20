@@ -3,6 +3,8 @@ package com.github.assenovabay.students.model;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import static com.github.assenovabay.students.constant.Constant.*;
+
 /**
  * @author Abay Assenov
  *         10/16/2017
@@ -42,6 +44,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "ID:"+getId()+" ФИО:"+getFio()+" Факультет:"+getFaculty();
+        return ID+getId()+FIO+getFio()+FACULTY+getFaculty();
     }
 }

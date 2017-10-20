@@ -1,5 +1,7 @@
 package com.github.assenovabay.students.bean;
 
+import com.github.assenovabay.students.constant.Constant;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -16,7 +18,7 @@ public class LoginRedirect {
 
     public void doRedirect() throws IOException{
 
-        FacesContext.getCurrentInstance().getExternalContext().redirect("views/login.xhtml");//redirect to login page
+        FacesContext.getCurrentInstance().getExternalContext().redirect(Constant.PATH_PAGE_LOGIN);//redirect to login page
     }
 
 }

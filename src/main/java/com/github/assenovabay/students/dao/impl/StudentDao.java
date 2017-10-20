@@ -59,11 +59,6 @@ public class StudentDao extends AbstractDao<Student> {
     }
 
     @Override
-    public Student getById(Long idEntity) {
-        throw new UnsupportedOperationException(); //TODO remove
-    }
-
-    @Override
     public List<Student> getAll() {
 
         List<Student> studentList = new ArrayList<>();

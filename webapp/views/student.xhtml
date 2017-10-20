@@ -19,8 +19,11 @@
             <div class="ui-g-12 ui-md-12" style="padding-bottom: 70px;">
                 <h:form>
                     <p:menubar>
+
                         <f:facet name="options">
-                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink"/>
+                            <p:outputLabel value="Пользоватеть: #{studentView.userName}"/>
+                            <p:spacer width="20px;"/>
+                            <p:commandButton  value="Logout" action="#{studentView.logout}" icon="ui-icon-extlink"/>
                         </f:facet>
                     </p:menubar>
                 </h:form>

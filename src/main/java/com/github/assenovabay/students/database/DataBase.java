@@ -1,5 +1,7 @@
 package com.github.assenovabay.students.database;
 
+import com.github.assenovabay.students.constant.Constant;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,7 +20,7 @@ public class DataBase {
     public DataBase() {
         try {
             Context ctx = new InitialContext();
-            ds = (DataSource)ctx.lookup("java:comp/env/jdbc/student");
+            ds = (DataSource)ctx.lookup(Constant.DATA_SOURCE_URL);
         } catch (NamingException e) {
             e.printStackTrace();
         }
