@@ -34,8 +34,6 @@ public class StudentView implements Serializable {
 
     private HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 
-    private String userName = session.getAttribute(USER_NAME) != null ? session.getAttribute(USER_NAME).toString() : EMPTY_STR; //Take user name
-
     public Student getSelectedStudent() {
         return selectedStudent;
     }
@@ -50,10 +48,6 @@ public class StudentView implements Serializable {
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public String getUserName() {
-        return userName;
     }
 
     //logout event, invalidate session
